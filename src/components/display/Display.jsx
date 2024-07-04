@@ -2,7 +2,7 @@ import clsx from 'clsx'
 import React from 'react'
 import ButtonSpin from '../button/ButtonSpin'
 import ButtonBet from '../button/ButtonBet'
-import { Info } from 'lucide-react'
+import { Info, X } from 'lucide-react'
 
 const Display = ({
     balance,
@@ -16,13 +16,14 @@ const Display = ({
     bet, 
     win, 
     plus, 
-    infoHandler
+    infoHandler,
+    cancel
 }) => {
 
 
   return (
-    <div className={clsx('w-full h-screen', 'border border-gray-300')}>
-        <div className={clsx('grid grid-cols-3 border mx-3')}>
+    <div className={clsx('w-full h-screen')}>
+        <div className={clsx('grid grid-cols-3 mx-3')}>
             <span></span>
 
             <div>
@@ -57,7 +58,14 @@ const Display = ({
             <ButtonBet label={'BET $5'} onClick={betHandler2} />
             <ButtonBet label={'BET $10'} onClick={betHandler3} />
         </div>
-        <div className={clsx('fixed bottom-24 left-[36%]')}>
+        {
+            bet !== 0 &&
+        <div onClick={cancel} className='text-red-500 flex justify-center mt-10'>
+            <X id='cancel'/>
+            <label htmlFor="cancel">Cancel Bet</label>
+        </div>
+        }
+        <div className={clsx('fixed bottom-20 left-[36%]')}>
             <ButtonSpin label={'SPIN'} onClick={spinHandler}/>
         </div>
         <div className='fixed bottom-0 p-2' onClick={infoHandler}>

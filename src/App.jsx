@@ -94,7 +94,9 @@ function App() {
   }
   const setBet = () => {
     if(amountBalance <= 0){
+      opss.play()
       setLowBalance(true)
+      return null
     }else{
       setbetAmount(betAmount +1)
       setAmountBalance(amountBalance -1)
@@ -102,8 +104,10 @@ function App() {
   }
 
   const setBetFiveDollar = () => {
-    if(amountBalance <= 0){
+    if(amountBalance <= 4){
+      opss.play()
       setLowBalance(true)
+      return null
     }else{
       setbetAmount(betAmount +5)
       setAmountBalance(amountBalance -5)
@@ -111,13 +115,19 @@ function App() {
   }
 
   const setBetTenDollar = () => {
-    if(amountBalance <= 0){
+    if(amountBalance <= 9){
       opss.play()
       setLowBalance(true)
+      return null
     }else{
       setbetAmount(betAmount +10)
       setAmountBalance(amountBalance -10)
     }
+  }
+
+  const cancelBet = () => {
+    setbetAmount(0)
+    setAmountBalance(amountBalance + betAmount)
   }
 
   const handleClosePopUp = () => {
@@ -154,7 +164,7 @@ function App() {
         }
         {
           isInfo && <div className={clsx('fixed z-30 w-full h-screen', 'bg-black bg-opacity-50')}>
-          <PopUpBet className={'h-[400px] top-[15%]'} close={() => setIsInfo(false)} text={`This is rule and how to play the game! 
+          <PopUpBet className={'h-[400px] top-[14%]'} close={() => setIsInfo(false)} text={`This is rule and how to play the game! 
               <br />
               <br />
               1.Place bet
@@ -182,6 +192,7 @@ function App() {
         win={winAmount}
         plus={plus}
         infoHandler={() => setIsInfo(true)}
+        cancel={cancelBet}
         />
       </div>
     </Fragment>
