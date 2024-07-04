@@ -6,7 +6,7 @@ import parse from 'html-react-parser'
 
 const PopUpBet = ({className, close, text, image, title}) => {
   return (
-    <div className={clsx('w-[250px] h-[200px] bg-white p-2', 'absolute left-[19%] top-[30%]', twMerge(className))}>
+    <div className={twMerge(clsx('w-[250px] h-[200px] bg-white p-2', 'absolute left-[20%] top-[30%]', className))}>
         <div className={clsx('flex justify-between px-3')}>
             <span></span>
             <h1 className='text-2xl font-bold'>{title}</h1>

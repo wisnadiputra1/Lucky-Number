@@ -49,7 +49,6 @@ function App() {
         WinTemp = betAmount * 2
         setWinAmount(win)
         win.play()
-
       }
       setPlus(true)
       setWinAmount(WinTemp)
@@ -164,7 +163,7 @@ function App() {
         }
         {
           isInfo && <div className={clsx('fixed z-30 w-full h-screen', 'bg-black bg-opacity-50')}>
-          <PopUpBet className={'h-[400px] top-[14%]'} close={() => setIsInfo(false)} text={`This is rule and how to play the game! 
+          <PopUpBet className={'h-[400px] top-[10%]'} close={() => setIsInfo(false)} text={`This is rule and how to play the game! 
               <br />
               <br />
               1.Place bet

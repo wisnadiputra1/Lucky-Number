@@ -1,8 +1,9 @@
 import clsx from 'clsx'
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import ButtonSpin from '../button/ButtonSpin'
 import ButtonBet from '../button/ButtonBet'
 import { Info, X } from 'lucide-react'
+import History from '../history/History'
 
 const Display = ({
     balance,
@@ -17,9 +18,19 @@ const Display = ({
     win, 
     plus, 
     infoHandler,
-    cancel
+    cancel,
+    historyHandler
 }) => {
 
+  const [history, setHistory] = useState([])
+  const [isHistory, setIsHistory] = useState(false)
+
+
+  useEffect(() => {
+    if(win !== 0){
+        setHistory([...history, win])
+    }else return
+  }, [win])
 
   return (
     <div className={clsx('w-full h-screen')}>
@@ -65,12 +76,20 @@ const Display = ({
             <label htmlFor="cancel">Cancel Bet</label>
         </div>
         }
-        <div className={clsx('fixed bottom-20 left-[36%]')}>
+        <div className={clsx('absolute bottom-28 left-[37%]')}>
             <ButtonSpin label={'SPIN'} onClick={spinHandler}/>
         </div>
-        <div className='fixed bottom-0 p-2' onClick={infoHandler}>
+        <div className='fixed bottom-1 p-2' onClick={infoHandler}>
             <Info />
         </div>
+        <div className='fixed bottom-3 right-1' onClick={() => setIsHistory(true)}>
+            <span className='p-1 bg-sky-200 rounded-md'>Win History</span>
+        </div>
+        {
+            isHistory ?
+            <History history={history} historyHandler={() => setIsHistory(false)} />
+            : null
+        }
     </div>
   )
 }
