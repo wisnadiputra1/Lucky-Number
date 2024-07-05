@@ -32,6 +32,9 @@ const Display = ({
     }else return
   }, [win])
 
+  console.log(win)
+  console.log(plus)
+
   return (
     <div className={clsx('w-full h-screen')}>
         <div className={clsx('grid grid-cols-3 mx-3')}>

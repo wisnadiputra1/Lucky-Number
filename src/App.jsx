@@ -56,14 +56,6 @@ function App() {
         setWinAmount(0)
       }, 3000)
       setAmountBalance(prevBalance => prevBalance + WinTemp);
-      
-      setTimeout(() => {
-        const randomDisplayNumber1 = Math.floor(Math.random() * 10) + 1;
-        const randomDisplayNumber2 = Math.floor(Math.random() * 10) + 1;
-        setDisplayNumber1(randomDisplayNumber1)
-        setDisplayNumber2(randomDisplayNumber2)
-        setPlus(false)
-      }, 3000);
       setTimeout(() => {
         setbetAmount(0)
       }, 100)
@@ -81,16 +73,29 @@ function App() {
 
   const spin = new Audio(SpinSound)
 
+  const handleDisplayNum = () => {
+    const randomDisplayNumber1 = Math.floor(Math.random() * 10) + 1;
+      const randomDisplayNumber2 = Math.floor(Math.random() * 10) + 1;
+      setDisplayNumber1(randomDisplayNumber1)
+      setDisplayNumber2(randomDisplayNumber2)
+  }
+
   const getRandomNumber = () => {
     if(betAmount !== 0){
       const randomNum = Math.floor(Math.random() * 10) + 1
       setrandomNum(randomNum)
+      handleDisplayNum()
       spin.play()
+      setTimeout(() => {
+        setPlus(false)
+      }, 3000)
     }else{
       opss.play()
       setpopup(true)
     }
   }
+
+  //bet handler
   const setBet = () => {
     if(amountBalance <= 0){
       opss.play()
@@ -102,6 +107,7 @@ function App() {
     }
   }
 
+  //bet five dollar
   const setBetFiveDollar = () => {
     if(amountBalance <= 4){
       opss.play()
@@ -112,6 +118,7 @@ function App() {
       setAmountBalance(amountBalance -5)
     }
   }
+
 
   const setBetTenDollar = () => {
     if(amountBalance <= 9){

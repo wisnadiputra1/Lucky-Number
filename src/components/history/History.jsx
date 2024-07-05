@@ -1,5 +1,5 @@
 import { X } from 'lucide-react'
-import React from 'react'
+import React, { Fragment } from 'react'
 import clsx from 'clsx'
 
 const History = ({history, historyHandler}) => {
@@ -14,18 +14,18 @@ const History = ({history, historyHandler}) => {
                 <X />
             </div>
         </div>
-        <div>
-            {
-                history.length !== 0 ? 
-                    history.map((item, idx) => {
-                        return(
-                            <p key={idx} className='text-xl text-green-500'>
-                                +${item}
-                            </p>
-                        )
-                    })
-                : null
-            }
+        <div className={clsx('overflow-scroll h-[400px]')}>
+                {
+                    history.length !== 0 ? 
+                        history.map((item, idx) => {
+                            return(
+                                <p key={idx} className='text-xl text-green-500'>
+                                    +${item}
+                                </p>
+                            )
+                        })
+                    : null
+                }
         </div>
     </div>
   )
